@@ -1,47 +1,106 @@
-# Svelte + TS + Vite
+# First AI Project: Using Gemini AI API and Polygon API
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+## **Project Overview**
 
-## Recommended IDE Setup
+This project integrates the **Gemini AI API** for natural language processing and sentiment analysis with the **Polygon API** for financial data. The goal is to analyze market sentiment and provide insights into stock market trends based on financial news and user queries.
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+---
 
-## Need an official Svelte framework?
+## **Key Features**
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+1. **Sentiment Analysis**: Analyze financial news and user queries to determine the sentiment (positive, negative, or neutral) towards specific stocks or sectors.
+2. **Stock Data Retrieval**: Fetch real-time stock market data, such as price, volume, and historical trends, using the Polygon API.
+3. **Interactive Query System**: Allow users to input questions about stocks, sectors, or market trends and receive AI-driven insights.
 
-## Technical considerations
+---
 
-**Why use this over SvelteKit?**
+## **Technologies Used**
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+### **Frontend**:
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+- **Svelte 5** for building a responsive and interactive user interface.
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+### **APIs**:
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+1. **Gemini AI API**:
+   - Used for sentiment analysis and language understanding.
+2. **Polygon API**:
+   - Used to fetch financial data, including stock prices, historical trends, and market news.
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+---
 
-**Why include `.vscode/extensions.json`?**
+## **How It Works**
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+### **1. User Interaction**:
 
-**Why enable `allowJs` in the TS template?**
+- Users enter queries like:
+  - “What is the sentiment around Tesla?”
+  - “How is the technology sector performing?”
 
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
+### **2. API Calls**:
 
-**Why is HMR not preserving my local component state?**
+- The query is processed using:
+  1. **Gemini AI API** to determine sentiment and extract relevant keywords.
+  2. **Polygon API** to retrieve real-time data about the mentioned stocks or sectors.
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
+### **3. Data Correlation**:
 
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
+- The app combines sentiment data with real-time stock data to generate insights.
 
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+### **4. Response to User**:
+
+- The interface displays insights such as:
+  - Overall sentiment: Positive
+  - Stock trends: Tesla is up 2.3% today.
+  - Relevant tags: Electric Vehicles, Innovation
+
+---
+
+## **Example Use Case**
+
+### **Input Query**:
+
+"What’s the market sentiment around Apple after the latest iPhone launch?"
+
+### **Processing**:
+
+1. **Gemini AI API**:
+   - Sentiment: Positive
+   - Keywords: Apple, iPhone launch
+2. **Polygon API**:
+   - Current Stock Price: $175
+   - Change: +3%
+   - Volume: High
+
+### **Output**:
+
+- Sentiment: Positive
+- Stock Movement: Apple stock is up 3% following the iPhone launch.
+- Tags: Innovation, iPhone, Technology
+
+---
+
+## **Challenges Faced**
+
+1. **API Rate Limits**:
+   - Managed by limiting redundant API calls.
+2. **Data Correlation**:
+   - Merging sentiment analysis results with real-time data.
+3. **Error Handling**:
+   - Ensured the app gracefully handles API failures and missing data.
+
+---
+
+## **Future Improvements**
+
+1. **Broader Sentiment Analysis**:
+   - Expand sentiment analysis to include social media feeds (e.g., Twitter).
+2. **User Dashboard**:
+   - Add a dashboard for users to track favorite stocks and sectors.
+
+---
+
+## **Conclusion**
+
+This project was a hands-on introduction to combining AI and financial data. It demonstrated the power of integrating natural language processing with real-time APIs to deliver actionable insights. The project lays the foundation for more advanced applications in financial technology and AI-driven analytics.
+
